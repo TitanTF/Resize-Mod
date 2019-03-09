@@ -54,7 +54,7 @@ public Action Command_Resize(int iClient, int iArgs)
 		}
 		
 		else
-			PrintToChat(iClient, "\x03No valid entity was found.");
+			PrintToChat(iClient, "[SM] No valid entity was found.");
 	}
 	
 	else
