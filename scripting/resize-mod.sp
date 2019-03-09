@@ -50,6 +50,11 @@ public Action Command_Resize(int iClient, int iArgs)
 			SetEntPropFloat(iTarget, Prop_Send, "m_flModelScale", StringToFloat(sSize));
 		}
 	}
+	
+	else
+	{
+		PrintToChat(iClient, "\x03No valid entity was found.");
+	}
 }
 
 stock int GetClientPointVisible(int iClient)
