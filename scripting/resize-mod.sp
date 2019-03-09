@@ -39,22 +39,26 @@ public int OnCvarChanged(ConVar cvar, const char[] oldValue, const char[] newVal
 
 public Action Command_Resize(int iClient, int iArgs)
 {
-	char sSize[16];
-	GetCmdArg(1, sSize, sizeof(sSize));
-	
-	int iTarget = GetClientPointVisible(iClient);
-	if (iTarget > 0)
+	if (iArgs == 1)
 	{
-		if (StringToFloat(sSize) >= g_flMinSize && StringToFloat(sSize) <= g_flMaxSize)
+		char sSize[16];
+		GetCmdArg(1, sSize, sizeof(sSize));
+		
+		int iTarget = GetClientPointVisible(iClient);
+		if (iTarget > 0)
 		{
-			SetEntPropFloat(iTarget, Prop_Send, "m_flModelScale", StringToFloat(sSize));
+			if (StringToFloat(sSize) >= g_flMinSize && StringToFloat(sSize) <= g_flMaxSize)
+			{
+				SetEntPropFloat(iTarget, Prop_Send, "m_flModelScale", StringToFloat(sSize));
+			}
 		}
+		
+		else
+			PrintToChat(iClient, "\x03No valid entity was found.");
 	}
 	
 	else
-	{
-		PrintToChat(iClient, "\x03No valid entity was found.");
-	}
+		PrintToChat(iClient, "[SM] Usage: sm_scale <%.1f - %.1f>", g_flMinSize, g_flMaxSize);
 }
 
 stock int GetClientPointVisible(int iClient)
