@@ -58,7 +58,11 @@ public Action Command_Resize(int iClient, int iArgs)
 	}
 	
 	else
+	{
 		PrintToChat(iClient, "[SM] Usage: sm_scale <%.1f - %.1f>", g_flMinSize, g_flMaxSize);
+	}
+	
+	return Plugin_Handled;
 }
 
 stock int GetClientPointVisible(int iClient)
@@ -75,8 +79,7 @@ stock int GetClientPointVisible(int iClient)
 	int iReturn = -1;
 	int iHit = TR_GetEntityIndex(hTrace);
 	
-	if (TR_DidHit(hTrace) && iHit != iClient)
-	{
+	if (TR_DidHit(hTrace) && iHit != iClient) {
 		iReturn = iHit;
 	}
 	
